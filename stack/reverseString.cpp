@@ -8,7 +8,7 @@ string reverseString(string s){
     stack<char> st;
     char ch ;
     for(int i=0; i<s.length(); i++){
-        ch = s[i];
+        ch = toupper(s[i]);
         st.push(ch);
     }
 
