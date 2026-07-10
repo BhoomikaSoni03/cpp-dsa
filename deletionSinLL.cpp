@@ -37,13 +37,46 @@ Node* deletionAtBegining(Node* head){
     return curr;
 }
 
+int getLen(Node* head){
+    Node* temp = head;
+    int cn = 0;
+    while(temp!= nullptr){
+        cn++;
+        temp = temp->next;
+    }
+    return cn;
+}
+
+void deletionAtEnd(Node* &head){
+  if(head == nullptr){
+    return;
+}
+
+if(head->next == nullptr){
+    delete head;
+    head = nullptr;
+    return;
+}
+    
+    Node* temp;
+    Node* curr = head;
+    int len = getLen(head);
+    for(int i =0; i <len-2; i++){
+        curr = curr->next;
+    }
+    temp= curr->next;
+    curr->next = nullptr;
+    delete temp;
+     
+}
+
 void printList(Node* head){
     Node* temp = head;
     while(temp != nullptr){
         cout<<temp->data<<"->";
         temp = temp->next;
     }
-    cout<<"Null";
+    cout<<"Null"<<endl;
 }
 
 int main(){
@@ -56,11 +89,19 @@ int main(){
         cin>>data;
         insetionAtEnd(head, data);
     }
-    
+
     cout<<"list before the deletion: "<<endl;
     printList(head);
-   cout<<endl;
-    cout<<"list after the deletion: "<<endl; 
+    cout<<endl;
+    cout<<"list after the deletion from the end: "<<endl; 
+    deletionAtEnd(head);
+    printList(head);
+
+ 
+    cout<<endl;
+    cout<<"list after the deletion from the begining: "<<endl; 
     head = deletionAtBegining(head);
     printList(head);
+    cout<<endl;
+    
 }
